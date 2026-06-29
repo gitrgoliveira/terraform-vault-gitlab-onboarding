@@ -5,12 +5,12 @@ terraform {
 module "gitlab_onboarding" {
   source = "../../"
 
-  bound_audiences    = var.bound_audiences
-  gitlab_instance    = var.gitlab_instance
-  jwt_issuer         = var.jwt_issuer
-  oidc_discovery_url = var.oidc_discovery_url
-  vault_address      = var.vault_address
-  vault_namespace    = var.vault_namespace
+  bound_audiences      = var.bound_audiences
+  gitlab_instance_name = var.gitlab_instance_name
+  jwt_issuer           = var.jwt_issuer
+  oidc_discovery_url   = var.oidc_discovery_url
+  vault_address        = var.vault_address
+  vault_namespace      = var.vault_namespace
 }
 
 variable "bound_audiences" {
@@ -18,7 +18,7 @@ variable "bound_audiences" {
   description = "Audience list used by downstream principal roles."
 }
 
-variable "gitlab_instance" {
+variable "gitlab_instance_name" {
   type        = string
   description = "GitLab instance identifier."
 }

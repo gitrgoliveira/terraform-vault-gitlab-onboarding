@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.0.3] - 2026-06-29
+
+### Changed
+- Renamed `gitlab_instance` to `gitlab_instance_name` and restricted values to `cloud`, `dedicated_prod`, `dedicated_dev`.
+
 ## [0.0.2] - 2026-06-29
 
 ### Changed

@@ -1,4 +1,4 @@
-gitlab_instance    = "gitlab-com"
+gitlab_instance_name = "cloud"
 jwt_issuer         = "https://gitlab.com"
 oidc_discovery_url = "https://gitlab.com"
 bound_audiences    = ["https://vault.example.com"]

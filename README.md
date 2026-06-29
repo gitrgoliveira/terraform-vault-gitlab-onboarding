@@ -1,6 +1,6 @@
 # terraform-vault-gitlab-onboarding
 
-Trust-layer module that creates one Vault JWT auth backend at `jwt-gitlab/<gitlab_instance>` for GitLab.
+Trust-layer module that creates one Vault JWT auth backend at `jwt-gitlab/<gitlab_instance_name>` for GitLab.
 
 ## Layer
 
@@ -15,13 +15,13 @@ Trust. This module creates trust only. It does not create principals, policies, 
 
 - This module is no-code ready and declares its own `vault` provider.
 - It creates trust only and outputs values for principal modules.
-- It uses a separate mount path from OCP trust (`jwt-gitlab/<gitlab_instance>`).
+- It uses a separate mount path from OCP trust (`jwt-gitlab/<gitlab_instance_name>`).
 
 ## Inputs
 
 | Name | Type | Description |
 |---|---|---|
-| `gitlab_instance` | `string` | GitLab instance/scope identifier, regex validated |
+| `gitlab_instance_name` | `string` | One of `cloud`, `dedicated_prod`, `dedicated_dev` |
 | `jwt_issuer` | `string` | GitLab OIDC issuer URL |
 | `oidc_discovery_url` | `string` | Optional discovery URL, mutually exclusive |
 | `jwks_url` | `string` | Optional JWKS URL, mutually exclusive |
@@ -36,9 +36,9 @@ Trust. This module creates trust only. It does not create principals, policies, 
 
 | Name | Description |
 |---|---|
-| `jwt_auth_path` | JWT mount path (`jwt-gitlab/<gitlab_instance>`) |
+| `jwt_auth_path` | JWT mount path (`jwt-gitlab/<gitlab_instance_name>`) |
 | `jwt_mount_accessor` | JWT mount accessor for entity alias creation |
-| `gitlab_instance` | Echo |
+| `gitlab_instance_name` | Echo |
 | `bound_audiences` | Echo |
 | `vault_namespace` | Echo |
 | `vault_address` | Echo |
@@ -50,7 +50,7 @@ module "gitlab_onboarding" {
   source  = "app.terraform.io/<org>/gitlab-onboarding/vault"
   version = "~> 0.1"
 
-  gitlab_instance    = "gitlab-com"
+  gitlab_instance_name = "cloud"
   jwt_issuer         = "https://gitlab.com"
   oidc_discovery_url = "https://gitlab.com"
   bound_audiences    = ["https://vault.example.com"]

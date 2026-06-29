@@ -4,11 +4,11 @@ run "multiple_jwt_verification_sources_fail_validation" {
   command = plan
 
   variables {
-    bound_audiences    = ["https://gitlab.com"]
-    gitlab_instance    = "dev-cluster"
-    jwt_issuer         = "https://gitlab.com"
-    oidc_discovery_url = "https://gitlab.com"
-    jwks_url           = "https://gitlab.com/oauth/discovery/keys"
+    bound_audiences      = ["https://gitlab.com"]
+    gitlab_instance_name = "cloud"
+    jwt_issuer           = "https://gitlab.com"
+    oidc_discovery_url   = "https://gitlab.com"
+    jwks_url             = "https://gitlab.com/oauth/discovery/keys"
   }
 
   expect_failures = [
@@ -16,17 +16,17 @@ run "multiple_jwt_verification_sources_fail_validation" {
   ]
 }
 
-run "invalid_gitlab_instance_fails_validation" {
+run "invalid_gitlab_instance_name_fails_validation" {
   command = plan
 
   variables {
-    bound_audiences    = ["https://gitlab.com"]
-    gitlab_instance    = "-bad"
-    jwt_issuer         = "https://gitlab.com"
-    oidc_discovery_url = "https://gitlab.com"
+    bound_audiences      = ["https://gitlab.com"]
+    gitlab_instance_name = "-bad"
+    jwt_issuer           = "https://gitlab.com"
+    oidc_discovery_url   = "https://gitlab.com"
   }
 
   expect_failures = [
-    var.gitlab_instance,
+    var.gitlab_instance_name,
   ]
 }
