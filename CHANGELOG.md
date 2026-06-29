@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.0.6] - 2026-06-29
+
+### Changed
+- Documentation fix: corrected the registry-usage version constraint and no-code registry pin to `0.0.6`.
+
 ## [0.0.5] - 2026-06-29
 
 ### Changed

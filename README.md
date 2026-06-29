@@ -45,7 +45,7 @@ Trust. This module creates trust only. It does not create principals, policies, 
 
 ## No-code provisioning
 
-This module is no-code enabled in the `hc-ric-demo` private registry (pinned to `0.0.5`). Click **Provision workspace**, pick a project and workspace name, then complete the form. `gitlab_instance_name` is presented as a **dropdown** limited to `cloud`, `dedicated_prod`, `dedicated_dev`.
+This module is no-code enabled in the `hc-ric-demo` private registry (pinned to `0.0.6`). Click **Provision workspace**, pick a project and workspace name, then complete the form. `gitlab_instance_name` is presented as a **dropdown** limited to `cloud`, `dedicated_prod`, `dedicated_dev`.
 
 Form fields:
 
@@ -61,7 +61,7 @@ Form fields:
 ```hcl
 module "gitlab_onboarding" {
   source  = "app.terraform.io/<org>/gitlab-onboarding/vault"
-  version = "~> 0.1"
+  version = "~> 0.0.6"
 
   gitlab_instance_name = "cloud"
   oidc_discovery_url = "https://gitlab.com"
