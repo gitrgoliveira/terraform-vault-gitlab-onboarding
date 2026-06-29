@@ -45,8 +45,7 @@ variable "max_lease_ttl" {
 
 variable "oidc_discovery_url" {
   type        = string
-  description = "Optional OIDC discovery URL for JWT auth backend config."
-  default     = ""
+  description = "OIDC discovery URL for JWT auth backend config. Set exactly one of oidc_discovery_url, jwks_url, or jwt_validation_pubkeys."
 
   validation {
     condition = (

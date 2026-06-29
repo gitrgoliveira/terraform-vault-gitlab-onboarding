@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.0.4] - 2026-06-29
+
+### Changed
+- Removed default from `oidc_discovery_url` so it becomes a required input in the no-code form, preventing the "set exactly one" validation error when all sources are left empty.
+
 ## [0.0.3] - 2026-06-29
 
 ### Changed
