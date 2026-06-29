@@ -47,6 +47,8 @@ Trust. This module creates trust only. It does not create principals, policies, 
 
 This module is no-code enabled in the `hc-ric-demo` private registry (pinned to `0.0.6`). Click **Provision workspace**, pick a project and workspace name, then complete the form. `gitlab_instance_name` is presented as a **dropdown** limited to `cloud`, `dedicated_prod`, `dedicated_dev`.
 
+> **No-code UX note:** The `gitlab_instance_name` dropdown is driven by explicit no-code `variable-options` configured on the module in the registry, not by the module's `contains()` validation (which only validates on submit). These options (`cloud`, `dedicated_prod`, `dedicated_dev`) are a registry-side setting applied via the `tfe_no_code_module` resource or the no-code modules API. They are not stored in this repository, so re-enabling no-code provisioning for the module requires re-applying them.
+
 Form fields:
 
 | Field | Required | Notes |
