@@ -43,6 +43,19 @@ Trust. This module creates trust only. It does not create principals, policies, 
 | `vault_namespace` | Echo |
 | `vault_address` | Echo |
 
+## No-code provisioning
+
+This module is no-code enabled in the `hc-ric-demo` private registry (pinned to `0.0.3`). Click **Provision workspace**, pick a project and workspace name, then complete the form. `gitlab_instance_name` is presented as a **dropdown** limited to `cloud`, `dedicated_prod`, `dedicated_dev`.
+
+Form fields:
+
+| Field | Required | Notes |
+|---|---|---|
+| `gitlab_instance_name` | yes | Dropdown: `cloud` / `dedicated_prod` / `dedicated_dev` |
+| `jwt_issuer` | yes | GitLab OIDC issuer URL |
+| `oidc_discovery_url` / `jwks_url` / `jwt_validation_pubkeys` | yes | Set exactly one |
+| `bound_audiences` | no | Default `["vault"]` |
+
 ## Registry usage
 
 ```hcl
