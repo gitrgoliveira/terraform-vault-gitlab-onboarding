@@ -3,7 +3,7 @@ provider "vault" {
 }
 
 resource "vault_jwt_auth_backend" "this" {
-  path                   = "jwt-gitlab/${var.cluster_name}"
+  path                   = "jwt-gitlab/${var.gitlab_instance}"
   bound_issuer           = var.jwt_issuer
   oidc_discovery_url     = var.oidc_discovery_url != "" ? var.oidc_discovery_url : null
   jwks_url               = var.jwks_url != "" ? var.jwks_url : null

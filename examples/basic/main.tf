@@ -6,7 +6,7 @@ module "gitlab_onboarding" {
   source = "../../"
 
   bound_audiences    = var.bound_audiences
-  cluster_name       = var.cluster_name
+  gitlab_instance    = var.gitlab_instance
   jwt_issuer         = var.jwt_issuer
   oidc_discovery_url = var.oidc_discovery_url
   vault_address      = var.vault_address
@@ -18,9 +18,9 @@ variable "bound_audiences" {
   description = "Audience list used by downstream principal roles."
 }
 
-variable "cluster_name" {
+variable "gitlab_instance" {
   type        = string
-  description = "Cluster identifier."
+  description = "GitLab instance identifier."
 }
 
 variable "jwt_issuer" {

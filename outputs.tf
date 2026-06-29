@@ -3,9 +3,9 @@ output "bound_audiences" {
   value       = var.bound_audiences
 }
 
-output "cluster_name" {
-  description = "Echo of cluster_name input."
-  value       = var.cluster_name
+output "gitlab_instance" {
+  description = "Echo of gitlab_instance input."
+  value       = var.gitlab_instance
 }
 
 output "jwt_auth_path" {
