@@ -22,8 +22,8 @@ Trust. This module creates trust only. It does not create principals, policies, 
 | Name | Type | Description |
 |---|---|---|
 | `gitlab_instance_name` | `string` | One of `cloud`, `dedicated_prod`, `dedicated_dev` |
-| `jwt_issuer` | `string` | GitLab OIDC issuer URL |
-| `oidc_discovery_url` | `string` | Optional discovery URL, mutually exclusive |
+| `oidc_discovery_url` | `string` | Discovery URL, mutually exclusive; accepts base or `.well-known` form, normalised automatically |
+| `jwt_issuer` | `string` | Optional `bound_issuer`; derived from `oidc_discovery_url` when empty |
 | `jwks_url` | `string` | Optional JWKS URL, mutually exclusive |
 | `jwt_validation_pubkeys` | `list(string)` | Optional PEM keys, mutually exclusive |
 | `bound_audiences` | `list(string)` | Echoed for downstream principal role binding, default `["vault"]` |
@@ -45,15 +45,15 @@ Trust. This module creates trust only. It does not create principals, policies, 
 
 ## No-code provisioning
 
-This module is no-code enabled in the `hc-ric-demo` private registry (pinned to `0.0.3`). Click **Provision workspace**, pick a project and workspace name, then complete the form. `gitlab_instance_name` is presented as a **dropdown** limited to `cloud`, `dedicated_prod`, `dedicated_dev`.
+This module is no-code enabled in the `hc-ric-demo` private registry (pinned to `0.0.5`). Click **Provision workspace**, pick a project and workspace name, then complete the form. `gitlab_instance_name` is presented as a **dropdown** limited to `cloud`, `dedicated_prod`, `dedicated_dev`.
 
 Form fields:
 
 | Field | Required | Notes |
 |---|---|---|
 | `gitlab_instance_name` | yes | Dropdown: `cloud` / `dedicated_prod` / `dedicated_dev` |
-| `jwt_issuer` | yes | GitLab OIDC issuer URL |
-| `oidc_discovery_url` / `jwks_url` / `jwt_validation_pubkeys` | yes | Set exactly one |
+| `oidc_discovery_url` / `jwks_url` / `jwt_validation_pubkeys` | yes | Set exactly one; discovery URL accepts base or `.well-known` form |
+| `jwt_issuer` | no | Derived from `oidc_discovery_url` when empty |
 | `bound_audiences` | no | Default `["vault"]` |
 
 ## Registry usage
@@ -64,7 +64,6 @@ module "gitlab_onboarding" {
   version = "~> 0.1"
 
   gitlab_instance_name = "cloud"
-  jwt_issuer         = "https://gitlab.com"
   oidc_discovery_url = "https://gitlab.com"
   bound_audiences    = ["https://vault.example.com"]
 }

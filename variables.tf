@@ -28,7 +28,8 @@ variable "jwks_url" {
 
 variable "jwt_issuer" {
   type        = string
-  description = "GitLab OIDC issuer URL used as bound_issuer."
+  description = "Optional GitLab OIDC issuer (bound_issuer). Derived from oidc_discovery_url when empty."
+  default     = ""
 }
 
 variable "jwt_validation_pubkeys" {

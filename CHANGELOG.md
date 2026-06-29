@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.0.5] - 2026-06-29
+
+### Changed
+- Made `jwt_issuer` optional; `bound_issuer` is now derived from `oidc_discovery_url` when empty.
+- `oidc_discovery_url` now accepts base or `.well-known` URLs and is normalised (any `/.well-known/...` suffix and trailing slash stripped).
+
 ## [0.0.4] - 2026-06-29
 
 ### Changed

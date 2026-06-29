@@ -25,3 +25,23 @@ run "defaults_plan_succeeds_with_oidc" {
     error_message = "jwt_auth_path should use jwt-gitlab/<gitlab_instance_name> naming."
   }
 }
+
+run "well_known_url_is_normalised" {
+  command = plan
+
+  variables {
+    bound_audiences      = ["https://gitlab.com"]
+    gitlab_instance_name = "cloud"
+    oidc_discovery_url   = "https://gitlab.com/.well-known/openid-configuration"
+  }
+
+  assert {
+    condition     = vault_jwt_auth_backend.this.oidc_discovery_url == "https://gitlab.com"
+    error_message = "oidc_discovery_url should be normalised to the base path without the .well-known component."
+  }
+
+  assert {
+    condition     = vault_jwt_auth_backend.this.bound_issuer == "https://gitlab.com"
+    error_message = "bound_issuer should be derived from the normalised discovery URL."
+  }
+}
