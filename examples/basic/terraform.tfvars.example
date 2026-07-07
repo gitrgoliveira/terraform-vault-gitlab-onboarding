@@ -1,7 +1,2 @@
 gitlab_instance_name = "cloud"
 oidc_discovery_url = "https://gitlab.com"
-bound_audiences    = ["https://vault.example.com"]
-
-# Optional render-only values commonly supplied by project variable sets
-vault_address   = "https://vault.example.com"
-vault_namespace = "admin/prod/payments"
