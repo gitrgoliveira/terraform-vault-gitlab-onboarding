@@ -18,6 +18,7 @@ variable "gitlab_instance_name" {
 variable "jwt_issuer" {
   type        = string
   description = "GitLab OIDC issuer URL."
+  default     = ""
 }
 
 variable "oidc_discovery_url" {

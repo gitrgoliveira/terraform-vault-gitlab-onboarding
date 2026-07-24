@@ -1,17 +1,17 @@
+variable "default_lease_ttl" {
+  type        = string
+  description = "Default lease TTL for the JWT auth backend tune block."
+  default     = "1h"
+}
+
 variable "gitlab_instance_name" {
   type        = string
   description = "GitLab instance scope used in trust mount naming."
 
   validation {
-    condition     = contains(["cloud", "dedicated_prod", "dedicated_dev"], var.gitlab_instance_name)
-    error_message = "gitlab_instance_name must be one of: cloud, dedicated_prod, dedicated_dev."
+    condition     = contains(["cloud", "dedicated-prod", "dedicated-dev"], var.gitlab_instance_name)
+    error_message = "gitlab_instance_name must be one of: cloud, dedicated-prod, dedicated-dev."
   }
-}
-
-variable "default_lease_ttl" {
-  type        = string
-  description = "Default lease TTL for the JWT auth backend tune block."
-  default     = "1h"
 }
 
 variable "jwks_url" {
@@ -26,10 +26,10 @@ variable "jwt_issuer" {
   default     = ""
 }
 
-variable "jwt_validation_pubkeys" {
-  type        = list(string)
-  description = "Optional PEM public keys for JWT signature verification."
-  default     = []
+variable "jwt_validation_pubkey" {
+  type        = string
+  description = "Single PEM public key for JWT validation. Leave empty to use OIDC discovery or JWKS URL instead."
+  default     = ""
 }
 
 variable "max_lease_ttl" {
@@ -40,14 +40,15 @@ variable "max_lease_ttl" {
 
 variable "oidc_discovery_url" {
   type        = string
-  description = "OIDC discovery URL for JWT auth backend config. Set exactly one of oidc_discovery_url, jwks_url, or jwt_validation_pubkeys."
+  description = "OIDC discovery URL for JWT auth backend config. Set exactly one of oidc_discovery_url, jwks_url, or jwt_validation_pubkey."
+  default     = ""
 
   validation {
     condition = (
       (var.oidc_discovery_url != "" ? 1 : 0) +
       (var.jwks_url != "" ? 1 : 0) +
-      (length(var.jwt_validation_pubkeys) > 0 ? 1 : 0)
+      (var.jwt_validation_pubkey != "" ? 1 : 0)
     ) == 1
-    error_message = "Set exactly one of oidc_discovery_url, jwks_url, or jwt_validation_pubkeys."
+    error_message = "Set exactly one of oidc_discovery_url, jwks_url, or jwt_validation_pubkey."
   }
 }

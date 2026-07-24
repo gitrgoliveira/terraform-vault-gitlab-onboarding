@@ -2,6 +2,19 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.3.0] - 2026-07-24
+
+### Changed
+- **Breaking:** `gitlab_instance_name` enum values changed from `dedicated_prod`/`dedicated_dev` to `dedicated-prod`/`dedicated-dev` (hyphens instead of underscores) for consistency with the project identifier regex. No-code dropdown options must be updated in the registry.
+
+## [0.2.0] - 2026-07-24
+
+### Changed
+- **Breaking:** renamed `jwt_validation_pubkeys` (type `list(string)`) to `jwt_validation_pubkey` (type `string`). Callers passing a list must now pass a single PEM key string.
+- Added `default = ""` to `oidc_discovery_url` so non-OIDC paths no longer require passing an empty string explicitly.
+- Added `default = ""` to `jwt_issuer` in the basic example so the example validates without a tfvars entry for `jwt_issuer`.
+- Fixed alphabetical ordering of variables in `variables.tf`.
+
 ## [0.1.1] - 2026-07-07
 
 ### Changed
